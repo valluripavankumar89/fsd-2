@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Book Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Header -->
+    <header>
+        <div class="logo">📚 Book Store</div>
+        <h1>Smart Book Store</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="dropdown">
+            <!-- ID is now placed directly on the Home button -->
+            <button class="dropbtn" id="home-btn">Home ▼</button>
+            <div class="dropdown-content">
+                <a href="#">CSE</a>
+                <a href="#">EEE</a>
+                <a href="#">ECE</a>
+                <a href="#">Civil</a>
+            </div>
+        </div>
+
+        <button class="login" id="login-btn">Login</button>
+        <button class="reg">Registration</button>
+        <button class="cat" id="cat-btn">Catalogue</button>
+        <button class="car" id="cart-btn">Cart</button>
+    </nav>
+
+    <!-- Dynamic Content Area -->
+    <main id="main-content">
+        <section class="content">
+            <h2>Welcome to Smart Book Store</h2>
+            <p>
+                Smart Book Store is an online platform where students can find
+                engineering books for CSE, EEE, ECE, and Civil departments.
+                Users can browse the catalogue, register, log in, and purchase
+                books online using the shopping cart.
+            </p>
+        </section>
+    </main>
+
+    <!-- JavaScript connection -->
+    <script src="script.js"></script>
+</body>
+</html>
