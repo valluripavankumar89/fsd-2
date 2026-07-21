@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Capital Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            margin-right: 10px;
+        }
+
+        select {
+            padding: 8px 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        select:focus {
+            border-color: #007bff;
+        }
+
+        /* CSS for the Capital Text Output */
+        .capital-output {
+            color: #d9534f;         /* Capital Font Color */
+            font-weight: bold;       /* Bold Capital Text */
+            font-size: 20px;         /* Custom Font Size */
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <label for="countrySelect">Select a Country:</label>
+        <select id="countrySelect">
+            <option value="">-- Choose Country --</option>
+            <option value="Washington, D.C.">USA</option>
+            <option value="New Delhi">India</option>
+            <option value="Tokyo">Japan</option>
+            <option value="Paris">France</option>
+            <option value="Canberra">Australia</option>
+        </select>
+
+        <!-- Capital will appear next to the selection box -->
+        <span id="capitalDisplay" class="capital-output"></span>
+    </div>
+
+    <script>
+        const countrySelect = document.getElementById("countrySelect");
+        const capitalDisplay = document.getElementById("capitalDisplay");
+
+        countrySelect.addEventListener("change", function() {
+            const selectedCapital = this.value;
+            if (selectedCapital) {
+                capitalDisplay.textContent = "Capital: " + selectedCapital;
+            } else {
+                capitalDisplay.textContent = "";
+            }
+        });
+    </script>
+
+</body>
+</html>
