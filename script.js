@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const homeBtn = document.getElementById("home-btn");
     const loginBtn = document.getElementById("login-btn");
+    const regBtn = document.getElementById("reg-btn");
     const catBtn = document.getElementById("cat-btn");
     const cartBtn = document.getElementById("cart-btn");
     const mainContent = document.getElementById("main-content");
@@ -21,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. Login Page Template
     const loginHTML = `
         <div class="login-page-container">
-            <!-- Left Sidebar: Departments -->
             <aside class="sidebar">
                 <button class="side-btn">CSE</button>
                 <button class="side-btn">ECE</button>
@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button class="side-btn">MECH</button>
             </aside>
 
-            <!-- Middle Container: Form -->
             <section class="form-container">
                 <h2>User Login</h2>
                 <form onsubmit="event.preventDefault();">
@@ -52,7 +51,58 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     `;
 
-    // 3. Catalogue Page Template
+    // 3. Registration Page Template
+    const registrationHTML = `
+        <div class="login-page-container">
+            <aside class="sidebar">
+                <button class="side-btn">CSE</button>
+                <button class="side-btn">ECE</button>
+                <button class="side-btn">EEE</button>
+                <button class="side-btn">MECH</button>
+            </aside>
+
+            <section class="form-container">
+                <h2>User Registration</h2>
+                <form id="registration-form" novalidate>
+                    <div class="form-group">
+                        <label for="firstname">First Name:</label>
+                        <input type="text" id="firstname" placeholder="Enter First Name (min 7 letters)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname">Last Name:</label>
+                        <input type="text" id="lastname" placeholder="Enter Last Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reg-password">Password:</label>
+                        <input type="password" id="reg-password" placeholder="Enter Password (min 6 chars)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" placeholder="e.g. user@gmail.com, user@univ.edu">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number:</label>
+                        <input type="tel" id="mobile" placeholder="10-digit Mobile Number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <textarea id="address" rows="3" placeholder="Enter Address"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn submit-btn-full">Submit</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    `;
+
+    // 4. Catalogue Page Template
     const catalogueHTML = `
         <div class="catalogue-container">
             <h2>Engineering Books Catalogue</h2>
@@ -73,13 +123,12 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     `;
 
-    // 4. Cart Page Template (With Header Row and Total Row)
+    // 5. Cart Page Template
     const cartHTML = `
         <div class="cart-container">
             <h2>Your Shopping Cart</h2>
             
             <div class="cart-table-wrapper">
-                <!-- Side-by-side Headings Row -->
                 <div class="cart-header-row">
                     <div class="hdr-details">Book Details</div>
                     <div class="hdr-price">Price</div>
@@ -87,7 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="hdr-amount">Amount</div>
                 </div>
 
-                <!-- Added Book Items -->
                 <div class="cart-item-row">
                     <div class="col-details">
                         <img src="https://placehold.co/70x90?text=Network" alt="Book Cover" class="cart-thumb">
@@ -107,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="col-amount">$45.00</div>
                 </div>
 
-                <!-- Bottom Total Summary Row -->
                 <div class="cart-total-row">
                     <div class="total-label">Total Amount:</div>
                     <div class="total-price-val">$45.00</div>
@@ -120,6 +167,90 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     `;
 
+    // Helper Function to Attach Registration Form Listener & Validation
+    const attachRegistrationValidation = () => {
+        const regForm = document.getElementById("registration-form");
+        if (regForm) {
+            regForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                const firstName = document.getElementById("firstname").value.trim();
+                const lastName = document.getElementById("lastname").value.trim();
+                const password = document.getElementById("reg-password").value;
+                const email = document.getElementById("email").value.trim();
+                const mobile = document.getElementById("mobile").value.trim();
+                const address = document.getElementById("address").value.trim();
+
+                // 1. First Name Validation (alphabets only & length > 6)
+                const nameRegex = /^[A-Za-z]+$/;
+                if (!nameRegex.test(firstName)) {
+                    alert("First name must contain alphabets only!");
+                    return;
+                }
+                if (firstName.length <= 6) {
+                    alert("First name length must be more than 6 letters!");
+                    return;
+                }
+
+                // 2. Last Name Validation (not empty)
+                if (lastName === "") {
+                    alert("Last name cannot be empty!");
+                    return;
+                }
+
+                // 3. Password Validation (length > 5, 1 upper, 1 lower, 1 number, 1 special char)
+                if (password.length <= 5) {
+                    alert("Password length must be more than 5 characters!");
+                    return;
+                }
+                const upperCaseRegex = /[A-Z]/;
+                const lowerCaseRegex = /[a-z]/;
+                const digitRegex = /[0-9]/;
+                const symbolRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+                if (!upperCaseRegex.test(password)) {
+                    alert("Password must contain at least one uppercase letter!");
+                    return;
+                }
+                if (!lowerCaseRegex.test(password)) {
+                    alert("Password must contain at least one lowercase letter!");
+                    return;
+                }
+                if (!digitRegex.test(password)) {
+                    alert("Password must contain at least one number!");
+                    return;
+                }
+                if (!symbolRegex.test(password)) {
+                    alert("Password must contain at least one special symbol!");
+                    return;
+                }
+
+                // 4. Email Validation (standard format supporting any domain e.g., @gmail.com, @edu, etc.)
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!emailRegex.test(email)) {
+                    alert("Please enter a valid email address (e.g. user@gmail.com, student@university.edu)!");
+                    return;
+                }
+
+                // 5. Mobile Number Validation (exactly 10 digits)
+                const mobileRegex = /^[0-9]{10}$/;
+                if (!mobileRegex.test(mobile)) {
+                    alert("Mobile number must be exactly 10 digits!");
+                    return;
+                }
+
+                // 6. Address Validation (not empty)
+                if (address === "") {
+                    alert("Address cannot be empty!");
+                    return;
+                }
+
+                // If all validations pass
+                alert("Registration Successful!");
+            });
+        }
+    };
+
     // Event Bindings
     homeBtn.addEventListener("click", () => {
         mainContent.innerHTML = homeHTML;
@@ -127,6 +258,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loginBtn.addEventListener("click", () => {
         mainContent.innerHTML = loginHTML;
+    });
+
+    regBtn.addEventListener("click", () => {
+        mainContent.innerHTML = registrationHTML;
+        attachRegistrationValidation();
     });
 
     catBtn.addEventListener("click", () => {
