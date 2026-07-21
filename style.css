@@ -105,7 +105,7 @@ nav button:hover,
     line-height: 1.8;
 }
 
-/* --- Login Page Elements --- */
+/* --- Login & Registration Page Elements --- */
 .login-page-container {
     display: flex;
     min-height: calc(100vh - 160px);
@@ -159,14 +159,14 @@ form {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .form-group label {
@@ -174,17 +174,19 @@ form {
     color: #333;
 }
 
-.form-group input {
+.form-group input,
+.form-group textarea {
     padding: 10px;
-    font-size: 16px;
+    font-size: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    resize: vertical;
 }
 
 .form-actions {
     display: flex;
     gap: 15px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .submit-btn, .reset-btn {
@@ -205,6 +207,10 @@ form {
 
 .submit-btn:hover {
     background: #218838;
+}
+
+.submit-btn-full {
+    width: 100%;
 }
 
 .reset-btn {
@@ -396,7 +402,6 @@ form {
     color: #4B2E2E;
 }
 
-/* Bottom summary row alignment */
 .cart-total-row {
     display: flex;
     justify-content: space-between;
