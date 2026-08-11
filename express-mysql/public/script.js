@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <div class="form-actions">
                         <button type="submit" class="submit-btn submit-btn-full">Submit</button>
-                    </div>
+nano /opt/lampp/express-mysql/public/script.js                    </div>
                 </form>
             </section>
         </div>
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="cart-table-wrapper">
                 <div class="cart-header-row">
                     <div class="hdr-details">Book Details</div>
-                    <div class="hdr-price">Price</div>
+                    <div class="hdr-price">Prinano /opt/lampp/express-mysql/public/script.jsce</div>
                     <div class="hdr-quantity">Quantity</div>
                     <div class="hdr-amount">Amount</div>
                 </div>
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // 1. First Name Validation (alphabets only & length > 6)
                 const nameRegex = /^[A-Za-z]+$/;
                 if (!nameRegex.test(firstName)) {
-                    alert("First name must contain alphabets only!");
+                      alert("First name must contain alphabets only!");
                     return;
                 }
                 if (firstName.length <= 6) {
@@ -220,9 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     alert("Password must contain at least one number!");
                     return;
                 }
-Important for your JavaScript
-
-At the end of your registration validation, don't use only:
 
 // If all validations pass, send data to Express.js
 fetch("/api/register", {
@@ -252,9 +249,6 @@ fetch("/api/register", {
     console.error("Error:", error);
     alert("Unable to connect to server.");
 });
-
-Use this instead:
-
 fetch("/api/register", {
     method: "POST",
     headers: {
